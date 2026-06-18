@@ -33,6 +33,12 @@ material3 = "1.4.0"
 uiToolingPreview = "1.11.2"
 uiTooling = "1.11.2"
 materialIconsCoreAndroid = "1.7.8"
+kotlinSerializationJson = "1.10.0"
+retrofit2KotlinxSerializationConverter = "1.0.0"
+retrofit = "3.0.0"
+moshiKotlin = "1.15.2"
+converterMoshi = "3.0.0"
+
 
 
 [libraries]
@@ -79,6 +85,11 @@ androidx-material3 = { group = "androidx.compose.material3", name = "material3",
 androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview", version.ref = "uiToolingPreview" }
 androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling", version.ref = "uiTooling" }
 
+retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
+retrofit2-kotlinx-serialization-converter = { module = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter", version.ref = "retrofit2KotlinxSerializationConverter" }
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinSerializationJson" }
+converter-moshi = { module = "com.squareup.retrofit2:converter-moshi", version.ref = "converterMoshi" }
+squareup-moshi-kotlin = { module = "com.squareup.moshi:moshi-kotlin", version.ref = "moshiKotlin" }
 
 
 [plugins]

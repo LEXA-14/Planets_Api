@@ -98,6 +98,11 @@ dependencies {
 //    implementation(libs.androidx.compose.material.icons.extended)
     implementation(platform(libs.androidx.compose.bom))
 
-
+// Retrofit
+    implementation(libs.retrofit)
+    implementation(libs.retrofit2.kotlinx.serialization.converter)
+    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.squareup.moshi.kotlin)
+    implementation(libs.converter.moshi)
 
 }
