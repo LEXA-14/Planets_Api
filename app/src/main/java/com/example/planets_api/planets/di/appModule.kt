@@ -1,6 +1,7 @@
 package com.example.planets_api.planets.di
 
 import com.example.planets_api.Planets_api
+import com.example.planets_api.planets.data.remote.PlanetsApi
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Provides
@@ -21,14 +22,14 @@ import javax.inject.Singleton
 
     @Provides
     @Singleton
-    fun provideApi(moshi: Moshi): Planets_api {
+    fun provideApi(moshi: Moshi): PlanetsApi {
         val json = Json { ignoreUnknownKeys = true }
         return Retrofit.Builder()
             .baseUrl("https://dragonball-api.com/api-docs")
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             //.addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
             .build()
-            .create(Planets_api::class.java)
+            .create(PlanetsApi::class.java)
     }
 
 //    @Provides
