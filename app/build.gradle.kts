@@ -10,6 +10,7 @@ plugins {
 
 android {
     namespace = "com.example.planets_api"
+    compileSdk=36
 
     defaultConfig {
         applicationId = "com.example.planets_api"
@@ -48,6 +49,7 @@ dependencies {
 
 //    implementation(libs.androidx.compose.material.icons.core.android)
     implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.compose.runtime)
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.tooling.preview)
@@ -57,6 +59,7 @@ dependencies {
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
     implementation(libs.androidx.ui.tooling.preview)
+    implementation(libs.transport.runtime)
     debugImplementation(libs.androidx.ui.tooling)
     ksp(libs.androidx.room.compiler)
     implementation(libs.hilt.android)
