@@ -14,8 +14,8 @@ class PlanetRepositoryImpl @Inject constructor(
 
 
     override suspend fun getPlanets(
-        page: Int?,
-        limit: Int?,
+        page: Int,
+        limit: Int,
         name: String?,
         isDestroyed: Boolean?
     ): Resource<List<Planets>> {

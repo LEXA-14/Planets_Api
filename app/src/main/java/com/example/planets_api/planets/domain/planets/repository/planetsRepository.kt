@@ -6,8 +6,8 @@ import com.example.planets_api.planets.domain.planets.model.Planets
 
 interface PlanetRepository {
     suspend fun getPlanets(
-        page: Int? = null,
-        limit: Int? = null,
+        page: Int ,
+        limit: Int,
         name: String? = null,
         isDestroyed: Boolean? = null
     ): Resource<List<Planets>>
