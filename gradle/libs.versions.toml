@@ -40,6 +40,8 @@ moshiKotlin = "1.15.2"
 converterMoshi = "3.0.0"
 runtime = "1.11.2"
 transportRuntime = "4.1.1"
+lifecycleViewmodelKtxVersion = "2.11.0"
+runtimeVersion = "1.11.3"
 
 
 
@@ -94,6 +96,8 @@ converter-moshi = { module = "com.squareup.retrofit2:converter-moshi", version.r
 squareup-moshi-kotlin = { module = "com.squareup.moshi:moshi-kotlin", version.ref = "moshiKotlin" }
 androidx-compose-runtime = { group = "androidx.compose.runtime", name = "runtime", version.ref = "runtime" }
 transport-runtime = { group = "com.google.android.datatransport", name = "transport-runtime", version.ref = "transportRuntime" }
+lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycleViewmodelKtxVersion" }
+androidx-runtime = { group = "androidx.compose.runtime", name = "runtime", version.ref = "runtimeVersion" }
 
 
 [plugins]
