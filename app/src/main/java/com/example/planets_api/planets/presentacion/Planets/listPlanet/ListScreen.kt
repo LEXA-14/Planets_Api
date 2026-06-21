@@ -16,14 +16,20 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Button
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ExposedDropdownMenuBox
+import androidx.compose.material3.ExposedDropdownMenuDefaults
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -99,13 +105,21 @@ fun ListBodyScreen(
 }
 
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun FilterSection(
     name: String,
-    isDestroyed:String,
+    isDestroyed: Boolean?,
 
     onEvent: (listEvent) -> Unit,
 ) {
+    var expanded by remember { mutableStateOf(false) }
+    val opciones = listOf(
+        "Selecciona" to null,
+        "Destroyed" to true,
+        "Not Destroyed" to false
+    )
+    val textoSeleccionado = opciones.firstOrNull { it.second == isDestroyed }?.first ?: "Selecciona"
 
     ElevatedCard(
         modifier = Modifier
@@ -126,16 +140,42 @@ fun FilterSection(
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 OutlinedTextField(
                     value = name,
-                    onValueChange = { onEvent(listEvent.UpdateFilters(name, isDestroyed, )) },
+                    onValueChange = { onEvent(listEvent.UpdateFilters(name=it, isDestroyed=isDestroyed, )) },
                     label = { Text("Nombre") },
                     modifier = Modifier.weight(1f)
                 )
-                OutlinedTextField(
-                    value = isDestroyed,
-                    onValueChange = { onEvent(listEvent.UpdateFilters(name,isDestroyed, )) },
-                    label = { Text("is Destroyed?") },
-                    modifier = Modifier.weight(1f)
-                )
+
+                ExposedDropdownMenuBox(
+                    expanded = expanded,
+                    onExpandedChange = { expanded = it },
+                    modifier= Modifier.weight(1f)
+                ) {
+                    OutlinedTextField(
+                        value = textoSeleccionado,
+                        onValueChange = {},
+                        readOnly = true,
+                        label = { Text("¿Destruido?") },
+                        trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded) },
+                        modifier = Modifier
+                            .menuAnchor()
+                            .fillMaxWidth()
+                    )
+
+                    ExposedDropdownMenu(
+                        expanded = expanded,
+                        onDismissRequest = { expanded = false }
+                    ) {
+                        opciones.forEach { (texto, valor) ->
+                            DropdownMenuItem(
+                                text = { Text(texto) },
+                                onClick = {
+                                    onEvent(listEvent.UpdateFilters(name = name, isDestroyed = valor))
+                                    expanded = false
+                                }
+                            )
+                        }
+                    }
+                }
             }
 
             Button(
@@ -147,6 +187,7 @@ fun FilterSection(
         }
     }
 }
+
 
 @Preview(showBackground = true)
 @Composable

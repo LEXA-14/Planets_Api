@@ -8,7 +8,7 @@ data class listUiState
     val planets:List<Planets> = emptyList(),
     val error: String?=null,
     val filterName: String = "",
-    val filterIsDestroyed: String = "",
+    val filterIsDestroyed: Boolean?=null,
 
 
 

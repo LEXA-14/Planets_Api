@@ -10,8 +10,8 @@ class GetPlanetUseCase @Inject constructor(
         page: Int=1,
         limit:Int=10,
         name:String?=null,
-        isDetroyed: Boolean?=null
-    )= repository.getPlanets(page,limit,name,isDetroyed)
+        isDestroyed: Boolean?=null
+    )= repository.getPlanets(page,limit,name,isDestroyed)
 }
 
 class GetPlanetDetailUseCase @Inject constructor(

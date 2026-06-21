@@ -43,9 +43,11 @@ class ListViewModel @Inject constructor(
             val current = _state.value
             _state.update { it.copy(isLoading = true) }
 
+            android.util.Log.d("FILTRO_DEBUG", "name=${current.filterName}, isDestroyed=${current.filterIsDestroyed}")
+
             val result= getPlanetUseCase(
                 name = current.filterName.takeIf { it.isNotBlank() },
-                isDetroyed = current.filterIsDestroyed.takeIf { it.isNotBlank() }?.toBoolean(),
+                isDestroyed = current.filterIsDestroyed
             )
 
                 when (result) {
