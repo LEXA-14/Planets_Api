@@ -11,6 +11,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.planets_api.planets.Navegacion.NavGraph
 import com.example.planets_api.planets.presentacion.Planets.listPlanet.ListScreen
 import com.example.planets_api.ui.theme.Planets_ApiTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -22,11 +23,8 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             Planets_ApiTheme {
-                    ListScreen(
-                        onPlanetClick = { id ->
 
-                        }
-                    )
+                NavGraph()
 
                 }
             }

@@ -10,7 +10,7 @@ plugins {
 
 android {
     namespace = "com.example.planets_api"
-    compileSdk=36
+    compileSdk=37
 
     defaultConfig {
         applicationId = "com.example.planets_api"

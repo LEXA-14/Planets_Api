@@ -4,6 +4,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.toRoute
+import com.example.planets_api.planets.Navegacion.Screen
 import com.example.planets_api.planets.data.remote.Resource
 import com.example.planets_api.planets.domain.planets.usecase.GetPlanetDetailUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
