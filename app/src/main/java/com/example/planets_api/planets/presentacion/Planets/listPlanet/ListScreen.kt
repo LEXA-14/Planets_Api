@@ -116,12 +116,12 @@ fun FilterSection(
             modifier = Modifier.padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            OutlinedTextField(
-                value = name,
-                onValueChange = { onEvent(listEvent.UpdateFilters(name,isDestroyed)) },
-                label = { Text("Nombre (ej. Goku)") },
-                modifier = Modifier.fillMaxWidth()
-            )
+//            OutlinedTextField(
+//                value = name,
+//                onValueChange = { onEvent(listEvent.UpdateFilters(name,isDestroyed)) },
+//                label = { Text("Nombre (ej. Goku)") },
+//                modifier = Modifier.fillMaxWidth()
+//            )
 
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 OutlinedTextField(
