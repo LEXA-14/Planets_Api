@@ -12,5 +12,5 @@ interface PlanetRepository {
         isDestroyed: Boolean? = null
     ): Resource<List<Planets>>
 
-    suspend fun getPlanetDetail(id: Int): Resource<Planets>
+    suspend fun GetPlanetDetail(id: Int): Resource<Planets>
 }

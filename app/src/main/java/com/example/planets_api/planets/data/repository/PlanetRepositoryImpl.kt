@@ -4,8 +4,6 @@ import com.example.planets_api.planets.data.remote.Resource
 import com.example.planets_api.planets.data.remote.remoteDataSource.PlanetDataSource
 import com.example.planets_api.planets.domain.planets.model.Planets
 import com.example.planets_api.planets.domain.planets.repository.PlanetRepository
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 class PlanetRepositoryImpl @Inject constructor(
@@ -33,7 +31,7 @@ class PlanetRepositoryImpl @Inject constructor(
 
     }
 
-    override suspend fun getPlanetDetail(id: Int): Resource<Planets>{
+    override suspend fun GetPlanetDetail(id: Int): Resource<Planets>{
 
         val response = remoteDataSource.getPlanetDetail(id)
         return  response.fold(

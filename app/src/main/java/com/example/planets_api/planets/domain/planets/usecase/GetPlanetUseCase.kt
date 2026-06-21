@@ -13,3 +13,9 @@ class GetPlanetUseCase @Inject constructor(
         isDetroyed: Boolean?=null
     )= repository.getPlanets(page,limit,name,isDetroyed)
 }
+
+class GetPlanetDetailUseCase @Inject constructor(
+    private val repository: PlanetRepository
+) {
+    suspend operator fun invoke(id: Int) = repository.GetPlanetDetail(id)
+}
