@@ -3,7 +3,9 @@ package com.example.planets_api.di
 import dagger.Module
 import com.example.planets_api.data.remote.PlanetsApi
 import com.example.planets_api.data.remote.remoteDataSource.PlanetDataSource
+import com.example.planets_api.data.repository.CharacterRepositoryImp
 import com.example.planets_api.data.repository.PlanetRepositoryImpl
+import com.example.planets_api.domain.Character.Repository.CharacterRepository
 import com.example.planets_api.domain.planets.repository.PlanetRepository
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -47,6 +49,12 @@ object AppModule {
     @Singleton
     fun provideRepository(dataSource: PlanetDataSource): PlanetRepository {
         return PlanetRepositoryImpl(dataSource)
+    }
+
+    @Provides
+    @Singleton
+    fun provideRepositoryCharacter(dataSource: PlanetDataSource): CharacterRepository{
+        return CharacterRepositoryImp(dataSource)
     }
 }
 
