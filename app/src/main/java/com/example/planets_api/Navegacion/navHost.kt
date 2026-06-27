@@ -8,6 +8,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.planets_api.presentacion.Character.List.ListScreenCharacter
 import com.example.planets_api.presentacion.Planets.listPlanet.ListScreen
 
 import com.example.planets_api.presentacion.Planets.detailPlanets.DetailScreen
@@ -19,17 +20,37 @@ fun NavGraph(
 ) {
     NavHost(
         navController = navController,
-        startDestination = Screen.List
+        startDestination = Screen.ListPlanet
     ) {
-        composable<Screen.List> {
+        composable<Screen.ListPlanet> {
             ListScreen(
                 onPlanetClick = { id ->
-                    navController.navigate(Screen.Detail(id))
+                    navController.navigate(Screen.DetailPlanet(id))
+                },
+                onNavigateToCharacters = {
+                    navController.navigate(Screen.ListCharacter)
                 }
             )
         }
 
-        composable<Screen.Detail> {
+        composable<Screen.DetailPlanet> {
+            val viewModel: DetailViewModel = hiltViewModel()
+            val state by viewModel.state.collectAsStateWithLifecycle()
+
+            DetailScreen(
+                state = state,
+                onBack = { navController.popBackStack() }
+            )
+        }
+        composable<Screen.ListCharacter> {
+            ListScreenCharacter(
+             onCharacterClick = {id->
+                 navController.navigate(Screen.DetailCharacter(id))
+             }
+            )
+        }
+
+        composable<Screen.DetailCharacter> {
             val viewModel: DetailViewModel = hiltViewModel()
             val state by viewModel.state.collectAsStateWithLifecycle()
 

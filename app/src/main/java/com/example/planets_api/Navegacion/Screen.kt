@@ -4,8 +4,15 @@ import kotlinx.serialization.Serializable
 
 sealed class Screen {
     @Serializable
-    object List : Screen()
+    object ListPlanet : Screen()
 
     @Serializable
-    data class Detail(val id: Int) : Screen()
+    data class DetailPlanet(val id: Int) : Screen()
+
+
+    @Serializable
+    object ListCharacter : Screen()
+
+    @Serializable
+    data class DetailCharacter(val id: Int) : Screen()
 }

@@ -14,14 +14,19 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material3.Button
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.ExposedDropdownMenuDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -43,13 +48,17 @@ import coil.compose.AsyncImage
 @Composable
 fun ListScreen(
     viewModel: ListViewModel = hiltViewModel(),
-    onPlanetClick: (Int) -> Unit
+    onPlanetClick: (Int) -> Unit,
+    onNavigateToCharacters:()-> Unit
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
     ListBodyScreen(
         state = state,
         onEvent = viewModel::onEvent,
-        onPlanetClick = onPlanetClick
+        onPlanetClick = onPlanetClick,
+        onNavigateToCharacters=onNavigateToCharacters
+
+
     )
 }
 
@@ -59,11 +68,30 @@ fun ListBodyScreen(
     state: listUiState,
     onEvent: (listEvent) -> Unit,
     onPlanetClick: (Int) -> Unit,
+    onNavigateToCharacters: () -> Unit,
 ) {
+    var menuExpanded by remember { mutableStateOf(false) }
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
-                title = { Text("Lista de Planetas") }
+                title = { Text("Lista de Planetas") },
+                actions = {
+                    IconButton(onClick = { menuExpanded = true }) {
+                        Icon(Icons.Default.MoreVert, contentDescription = "Menu")
+                    }
+                DropdownMenu(
+                        expanded= menuExpanded,
+                        onDismissRequest={menuExpanded=false}
+                    ){
+                        DropdownMenuItem(
+                            text = {Text("Ver Characters")},
+                            onClick = {
+                                menuExpanded=false
+                                onNavigateToCharacters()
+                            }
+                        )
+                }
+                }
             )
         }
     ) { padding ->
