@@ -1,6 +1,7 @@
 
 [versions]
 agp = "9.2.1"
+coilCompose = "2.7.0"
 coreKtx = "1.18.0"
 coreTesting = "2.2.0"
 hiltAndroid = "2.59.2"
@@ -59,6 +60,7 @@ androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "
 androidx-room-testing = { module = "androidx.room:room-testing", version.ref = "roomTesting" }
 androidx-ui-test-junit4 = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "uiTestJunit4" }
 androidx-ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest", version.ref = "uiTestManifest" }
+coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coilCompose" }
 dagger-hilt-android-testing = { module = "com.google.dagger:hilt-android-testing", version.ref = "hiltAndroidTestingVersion" }
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hiltAndroid" }
 hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hiltAndroid" }
@@ -98,7 +100,6 @@ androidx-compose-runtime = { group = "androidx.compose.runtime", name = "runtime
 transport-runtime = { group = "com.google.android.datatransport", name = "transport-runtime", version.ref = "transportRuntime" }
 lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycleViewmodelKtxVersion" }
 androidx-runtime = { group = "androidx.compose.runtime", name = "runtime", version.ref = "runtimeVersion" }
-
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

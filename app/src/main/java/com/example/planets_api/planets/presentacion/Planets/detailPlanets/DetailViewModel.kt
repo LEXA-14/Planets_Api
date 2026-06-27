@@ -30,19 +30,18 @@ class DetailViewModel @Inject constructor(
 
     private fun loadPlanet(id: Int) {
         viewModelScope.launch {
-            _state.update { it.copy(isLoading = true) }
+            getPlanetDetailUseCase(id).collect { result ->
+                when (result) {
 
-            val result = getPlanetDetailUseCase(id)
+                    is Resource.Loading -> _state.update { it.copy(isLoading = true) }
 
-            when (result) {
-                is Resource.Loading -> _state.update { it.copy(isLoading = true) }
+                    is Resource.Success -> _state.update {
+                        it.copy(isLoading = false, planet = result.data)
+                    }
 
-                is Resource.Success -> _state.update {
-                    it.copy(isLoading = false, planet = result.data)
-                }
-
-                is Resource.Error -> _state.update {
-                    it.copy(isLoading = false, error = result.message)
+                    is Resource.Error -> _state.update {
+                        it.copy(isLoading = false, error = result.message)
+                    }
                 }
             }
         }

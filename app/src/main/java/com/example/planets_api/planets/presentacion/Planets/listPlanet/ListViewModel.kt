@@ -21,7 +21,7 @@ class ListViewModel @Inject constructor(
     val state = _state.asStateFlow()
 
     init {
-        loadCharacters()
+        loadPlanets()
     }
 
     fun onEvent(event: listEvent) {
@@ -34,30 +34,23 @@ class ListViewModel @Inject constructor(
                 )
             }
 
-            listEvent.Search -> loadCharacters()
+            listEvent.Search -> loadPlanets()
         }
     }
 
-    private fun loadCharacters() {
+    private fun loadPlanets() {
         viewModelScope.launch {
             val current = _state.value
-            _state.update { it.copy(isLoading = true) }
-
-            android.util.Log.d("FILTRO_DEBUG", "name=${current.filterName}, isDestroyed=${current.filterIsDestroyed}")
-
-            val result= getPlanetUseCase(
-                name = current.filterName.takeIf { it.isNotBlank() },
-                isDestroyed = current.filterIsDestroyed
-            )
-
+            getPlanetUseCase().collect { result ->
                 when (result) {
+
                     is Resource.Loading -> _state.update { it.copy(isLoading = true) }
 
                     is Resource.Success ->
                         _state.update {
                             it.copy(
                                 isLoading = false,
-                                planets = result.data?: emptyList()
+                                planets = result.data ?: emptyList()
                             )
                         }
 
@@ -72,3 +65,4 @@ class ListViewModel @Inject constructor(
             }
         }
     }
+}

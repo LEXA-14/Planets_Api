@@ -1,9 +1,10 @@
 package com.example.planets_api.planets.presentacion.Planets.detailPlanets
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -15,6 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
+import coil.compose.AsyncImage
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DetailScreen(
@@ -39,9 +41,23 @@ fun DetailScreen(
                     .padding(padding)
                     .padding(16.dp)
             ) {
+                AsyncImage(
+                    model=planet.image,
+                    contentDescription=planet.name,
+                    modifier= Modifier.fillMaxWidth()
+                        .height(300.dp)
+                )
                 Text(planet.name)
+
                 Text("Destruido: ${planet.isDestroyed}")
+                Text("Descripcion: ${planet.description}")
+
             }
         }
     }
+}
+
+@Composable
+fun AsyncImage() {
+    TODO("Not yet implemented")
 }

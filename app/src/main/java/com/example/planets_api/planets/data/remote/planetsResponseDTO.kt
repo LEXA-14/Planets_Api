@@ -9,9 +9,11 @@ data class PlanetsResponseDto(
 data class PlanetDto(
     val id: Int,
     val name: String,
-   val isDestroyed: Boolean
+    val isDestroyed: Boolean,
+    val description:String,
+    val image: String
 ) {
     fun toDomain() = Planets(
-        id,name, isDestroyed
+        id,name, isDestroyed, description,image
     )
 }

@@ -1,5 +1,8 @@
 package com.example.planets_api.planets.data.remote
 
+import com.example.planets_api.planets.domain.planets.model.Planets
+import kotlinx.coroutines.flow.Flow
+
 
 sealed class Resource<T>(
     val data: T? = null,

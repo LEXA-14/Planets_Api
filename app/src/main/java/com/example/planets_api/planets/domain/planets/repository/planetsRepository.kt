@@ -2,6 +2,7 @@ package com.example.planets_api.planets.domain.planets.repository
 
 import com.example.planets_api.planets.data.remote.Resource
 import com.example.planets_api.planets.domain.planets.model.Planets
+import kotlinx.coroutines.flow.Flow
 
 
 interface PlanetRepository {
@@ -10,7 +11,7 @@ interface PlanetRepository {
         limit: Int,
         name: String? = null,
         isDestroyed: Boolean? = null
-    ): Resource<List<Planets>>
+    ): Flow<Resource<List<Planets>>>
 
-    suspend fun GetPlanetDetail(id: Int): Resource<Planets>
+    suspend fun GetPlanetDetail(id: Int): Flow<Resource<Planets>>
 }

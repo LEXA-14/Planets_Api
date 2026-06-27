@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Button
@@ -37,6 +38,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.planets_api.planets.domain.planets.model.Planets
+import coil.compose.AsyncImage
 import com.example.planets_api.ui.theme.Planets_ApiTheme
 
 
@@ -189,38 +191,38 @@ fun FilterSection(
 }
 
 
-@Preview(showBackground = true)
-@Composable
-fun ListBodyScreenPreview() {
-    val samplePlanets = listOf(
-        Planets(
-            id = 1,
-            name = "Marte",
-            isDestroyed = false
-
-        ),
-       Planets(
-            id = 2,
-            name = "Vegeta",
-           isDestroyed = true
-
-        )
-    )
-    val state = listUiState(
-       planets = samplePlanets,
-        filterName = "Goku"
-    )
-
-    Planets_ApiTheme{
-        Surface {
-            ListBodyScreen(
-                state = state,
-                onEvent = {},
-                onPlanetClick = {}
-            )
-        }
-    }
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun ListBodyScreenPreview() {
+//    val samplePlanets = listOf(
+//        Planets(
+//            id = 1,
+//            name = "Marte",
+//            isDestroyed = false
+//
+//        ),
+//       Planets(
+//            id = 2,
+//            name = "Vegeta",
+//           isDestroyed = true
+//
+//        )
+//    )
+//    val state = listUiState(
+//       planets = samplePlanets,
+//        filterName = "Goku"
+//    )
+//
+//    Planets_ApiTheme{
+//        Surface {
+//            ListBodyScreen(
+//                state = state,
+//                onEvent = {},
+//                onPlanetClick = {}
+//            )
+//        }
+//    }
+//}
 
 @Composable
 fun PlanetItem(
@@ -236,13 +238,18 @@ fun PlanetItem(
             modifier = Modifier.padding(16.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-
-
+            AsyncImage(
+                model=planet.image,
+                contentDescription=planet.name,
+                modifier= Modifier.size(64.dp)
+            )
 
             Spacer(modifier = Modifier.width(16.dp))
 
             Column {
+
                 Text(planet.name)
+
                 Text("${planet.isDestroyed} • ")
             }
         }

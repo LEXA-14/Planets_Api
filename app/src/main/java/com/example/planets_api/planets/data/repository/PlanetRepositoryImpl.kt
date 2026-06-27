@@ -4,6 +4,8 @@ import com.example.planets_api.planets.data.remote.Resource
 import com.example.planets_api.planets.data.remote.remoteDataSource.PlanetDataSource
 import com.example.planets_api.planets.domain.planets.model.Planets
 import com.example.planets_api.planets.domain.planets.repository.PlanetRepository
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 class PlanetRepositoryImpl @Inject constructor(
@@ -16,30 +18,37 @@ class PlanetRepositoryImpl @Inject constructor(
         limit: Int,
         name: String?,
         isDestroyed: Boolean?
-    ): Resource<List<Planets>> {
+    ): Flow<Resource<List<Planets>>> = flow {
+
+        emit(Resource.Loading())
 
 
-        val response = remoteDataSource.getPlanet(page, limit, name,isDestroyed)
-        return response.fold(
+        val response = remoteDataSource.getPlanet(page, limit, name, isDestroyed)
+        response.fold(
             onSuccess = { planets ->
-            Resource.Success(planets.items.map { it.toDomain() })
+                emit(Resource.Success(planets.items.map { it.toDomain() }))
 
-        },
-            onFailure= { Resource.Error(it.message ?: "Error desconocido")
-        }
+            },
+            onFailure = {
+                emit(Resource.Error(it.message ?: "Error desconocido"))
+            }
         )
 
     }
 
-    override suspend fun GetPlanetDetail(id: Int): Resource<Planets>{
+    override suspend fun GetPlanetDetail(id: Int): Flow<Resource<Planets>> = flow {
+
+        emit(Resource.Loading())
+
 
         val response = remoteDataSource.getPlanetDetail(id)
-        return  response.fold(
+
+        response.fold(
             onSuccess = { planets ->
-            Resource.Success(planets.toDomain() )
+            emit(Resource.Success(planets.toDomain() ))
         },
             onFailure ={
-            Resource.Error(it.message ?: "Error desconocido")
+           emit( Resource.Error(it.message ?: "Error desconocido"))
         }
         )
     }
