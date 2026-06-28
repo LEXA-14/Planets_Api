@@ -6,7 +6,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.navigation.toRoute
 import com.example.planets_api.Navegacion.Screen
 import com.example.planets_api.data.remote.Resource
-import com.example.planets_api.domain.Character.Usecase.GetCharacterUseCase
+import com.example.planets_api.domain.Character.Usecase.GetCharacterDetailUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -16,7 +16,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CharacterDetailViewModel @Inject constructor(
-    private val getCharacterDetailUseCase: GetCharacterUseCase,
+    private val getCharacterDetailUseCase: GetCharacterDetailUseCase,
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
