@@ -14,14 +14,14 @@ class CharacterRepositoryImp @Inject constructor(
 ): CharacterRepository {
     override suspend fun getCharacters(
         page: Int,
-        limi: Int,
+        limit: Int,
         name: String?,
         gender: String?,
         race: String?
     ): Flow<Resource<List<Character>>> = flow{
       emit(Resource.Loading())
 
-        val response=remoteDataSource.getCharacters(page,limi,name,gender,race)
+        val response=remoteDataSource.getCharacters(page,limit,name,gender,race)
         response.onSuccess { characters->
             emit(Resource.Success(characters.items.map { it.toDomain() }))
         }.onFailure {
