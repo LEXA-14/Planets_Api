@@ -1,6 +1,7 @@
 package com.example.planets_api.data.repository
 
 import com.example.planets_api.data.remote.Resource
+import com.example.planets_api.data.remote.remoteDataSource.CharacterRemoteDataSource
 import com.example.planets_api.data.remote.remoteDataSource.PlanetDataSource
 import com.example.planets_api.domain.Character.Repository.CharacterRepository
 import com.example.planets_api.domain.Character.model.Character
@@ -10,7 +11,7 @@ import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 class CharacterRepositoryImp @Inject constructor(
-    private val remoteDataSource: PlanetDataSource
+    private val remoteDataSource: CharacterRemoteDataSource
 ): CharacterRepository {
     override suspend fun getCharacters(
         page: Int,
