@@ -56,8 +56,3 @@ fun DetailScreen(
         }
     }
 }
-
-@Composable
-fun AsyncImage() {
-    TODO("Not yet implemented")
-}
