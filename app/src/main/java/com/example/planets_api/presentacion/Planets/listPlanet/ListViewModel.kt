@@ -17,7 +17,7 @@ class ListViewModel @Inject constructor(
     private val getPlanetUseCase: GetPlanetUseCase
 ) : ViewModel() {
 
-    private val _state = MutableStateFlow(listUiState())
+    private val _state = MutableStateFlow(ListUiState())
     val state = _state.asStateFlow()
 
     init {
