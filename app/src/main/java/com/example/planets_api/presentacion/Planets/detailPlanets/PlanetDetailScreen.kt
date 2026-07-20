@@ -13,9 +13,13 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 
 import coil.compose.AsyncImage
 import com.example.planets_api.domain.planets.model.Planets
@@ -23,6 +27,20 @@ import com.example.planets_api.domain.planets.model.Planets
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PlanetDetailScreen(
+    planetId: Int,
+    viewModel: DetailViewModel= hiltViewModel(),
+    onBack: () -> Unit
+) {
+    val state by viewModel.state.collectAsStateWithLifecycle()
+
+    LaunchedEffect(planetId) {
+        viewModel.loadPlanet(planetId)
+    }
+
+}
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun PlanetDetailBodyScreen(
     state: DetailState,
     onBack: () -> Unit
 ) {
@@ -58,6 +76,7 @@ fun PlanetDetailScreen(
             }
         }
     }
+
 }
 @Preview(showBackground = true)
 @Composable
@@ -70,7 +89,7 @@ fun PlanetDetailScreenPreview() {
         image = "https://dragonball-api.com/planets/Namek.webp"
     )
 
-    PlanetDetailScreen(
+    PlanetDetailBodyScreen(
         state = DetailState(planet = samplePlanet),
         onBack = {}
     )

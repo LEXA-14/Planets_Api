@@ -21,7 +21,7 @@ class DetailViewModel @Inject constructor(
     val state = _state.asStateFlow()
 
 
-    private fun loadPlanet(id: Int) {
+     fun loadPlanet(id: Int) {
         viewModelScope.launch {
             getPlanetDetailUseCase(id).collect { result ->
                 when (result) {
