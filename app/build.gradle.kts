@@ -10,7 +10,7 @@ plugins {
 
 android {
     namespace = "com.example.planets_api"
-    compileSdk=37
+    compileSdk = 37
 
     defaultConfig {
         applicationId = "com.example.planets_api"
@@ -42,6 +42,7 @@ android {
         compose = true
     }
 }
+
 
 dependencies {
 
@@ -113,5 +114,7 @@ dependencies {
     implementation(libs.converter.moshi)
 //photo
     implementation(libs.coil.compose)
+    implementation(libs.androidx.navigation3.runtime)
+    implementation(libs.androidx.navigation3.ui)
 
 }
