@@ -48,7 +48,7 @@ import coil.compose.AsyncImage
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ListScreen(
-    viewModel: ListViewModel = hiltViewModel(),
+    viewModel: PlanetListViewModel = hiltViewModel(),
     onPlanetClick: (Int) -> Unit,
     onNavigateToCharacters:()-> Unit
 ) {
@@ -66,7 +66,7 @@ fun ListScreen(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ListBodyScreen(
-    state: ListUiState,
+    state: PlanetListUiState,
     onEvent: (listEvent) -> Unit,
     onPlanetClick: (Int) -> Unit,
     onNavigateToCharacters: () -> Unit,
@@ -121,7 +121,7 @@ fun ListBodyScreen(
             ) {
                 items(state.planets) { planet ->
                     PlanetItem(
-                        onClick = { onPlanetClick(planet.id) },
+                        onClick = { onPlanetClick(planet.PlanetId) },
                         planet = planet,
 
                     )
@@ -216,21 +216,21 @@ fun FilterSection(
 fun ListBodyScreenPreview() {
     val samplePlanets = listOf(
         Planets(
-            id = 1,
+            PlanetId = 1,
             name = "Vegeta",
             isDestroyed = true,
             description = "Planeta natal de la raza Saiyajin.",
             image = "https://dragonball-api.com/planets/Vegeta.webp"
         ),
         Planets(
-            id = 2,
+            PlanetId = 2,
             name = "Namek",
             isDestroyed = false,
             description = "Planeta natal de los Namekianos, con cielo verde.",
             image = "https://dragonball-api.com/planets/Namek.webp"
         ),
         Planets(
-            id = 3,
+            PlanetId = 3,
             name = "Tierra",
             isDestroyed = false,
             description = "Planeta hogar de los humanos y guerreros Z.",
@@ -239,7 +239,7 @@ fun ListBodyScreenPreview() {
     )
 
     ListBodyScreen(
-        state = ListUiState(
+        state = PlanetListUiState(
             planets = samplePlanets,
             isLoading = false,
             filterName = "",

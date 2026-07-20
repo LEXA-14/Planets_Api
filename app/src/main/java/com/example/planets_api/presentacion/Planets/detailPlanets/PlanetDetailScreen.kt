@@ -22,7 +22,7 @@ import com.example.planets_api.domain.planets.model.Planets
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DetailScreen(
+fun PlanetDetailScreen(
     state: DetailState,
     onBack: () -> Unit
 ) {
@@ -61,16 +61,16 @@ fun DetailScreen(
 }
 @Preview(showBackground = true)
 @Composable
-fun DetailScreenPreview() {
+fun PlanetDetailScreenPreview() {
     val samplePlanet = Planets(
-        id = 2,
+        PlanetId = 2,
         name = "Namek",
         isDestroyed = false,
         description = "Namek es el planeta natal de los Namekianos, incluyendo a Piccolo y Dende. Tiene tres soles y un cielo de color verde.",
         image = "https://dragonball-api.com/planets/Namek.webp"
     )
 
-    DetailScreen(
+    PlanetDetailScreen(
         state = DetailState(planet = samplePlanet),
         onBack = {}
     )

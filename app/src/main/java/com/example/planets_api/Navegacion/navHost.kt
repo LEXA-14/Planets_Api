@@ -13,7 +13,7 @@ import com.example.planets_api.presentacion.Character.Detail.CharacterDetailView
 import com.example.planets_api.presentacion.Character.List.ListScreenCharacter
 import com.example.planets_api.presentacion.Planets.listPlanet.ListScreen
 
-import com.example.planets_api.presentacion.Planets.detailPlanets.DetailScreen
+import com.example.planets_api.presentacion.Planets.detailPlanets.PlanetDetailScreen
 import com.example.planets_api.presentacion.Planets.detailPlanets.DetailViewModel
 
 @Composable
@@ -39,7 +39,7 @@ fun NavGraph(
             val viewModel: DetailViewModel = hiltViewModel()
             val state by viewModel.state.collectAsStateWithLifecycle()
 
-            DetailScreen(
+            PlanetDetailScreen(
                 state = state,
                 onBack = { navController.popBackStack() }
             )

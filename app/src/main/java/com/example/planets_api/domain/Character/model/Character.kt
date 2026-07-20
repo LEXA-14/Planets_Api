@@ -1,7 +1,7 @@
 package com.example.planets_api.domain.Character.model
 
 data class Character(
-    val id: Int,
+    val CharacterId: Int,
     val name: String,
     val ki: String,
     val race: String,
