@@ -1,5 +1,6 @@
 package com.example.planets_api.Navegacion
 
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -10,12 +11,15 @@ import com.example.planets_api.presentacion.Character.Detail.CharacterDetailScre
 import com.example.planets_api.presentacion.Character.List.ListScreenCharacter
 import com.example.planets_api.presentacion.Planets.detailPlanets.PlanetDetailScreen
 import com.example.planets_api.presentacion.Planets.listPlanet.ListScreen
-
+import androidx.navigation3.runtime.NavBackStack
+import androidx.navigation3.runtime.NavKey
+import kotlinx.datetime.format.Padding
 
 @Composable
-fun MainNavigationDisplay(){
-    val backStack= rememberNavBackStack(Screen.ListPlanet)
-
+fun MainNavigationDisplay(
+    backStack: NavBackStack<NavKey>,
+    innerPadding: PaddingValues
+){
     NavDisplay(
         backStack=backStack,
         modifier = Modifier.fillMaxSize(),
