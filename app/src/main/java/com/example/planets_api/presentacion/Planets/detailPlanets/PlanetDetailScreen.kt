@@ -36,6 +36,10 @@ fun PlanetDetailScreen(
     LaunchedEffect(planetId) {
         viewModel.loadPlanet(planetId)
     }
+    PlanetDetailBodyScreen(
+        state=state,
+        onBack=onBack
+    )
 
 }
 @OptIn(ExperimentalMaterial3Api::class)
