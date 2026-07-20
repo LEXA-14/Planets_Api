@@ -7,11 +7,11 @@ import kotlinx.coroutines.flow.Flow
 interface CharacterRepository {
     suspend fun getCharacters(
         page:Int,
-        limi:Int,
+        limit:Int,
         name: String?,
         gender:String?,
         race:String?,
     ): Flow<Resource<List<Character>>>
 
-    suspend fun getCharacterDetail(id: Int): Flow<Resource<Character>>
+   suspend fun getCharacterDetail(id: Int): Flow<Resource<Character>>
 }

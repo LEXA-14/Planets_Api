@@ -13,13 +13,38 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 
 import coil.compose.AsyncImage
+import com.example.planets_api.domain.planets.model.Planets
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DetailScreen(
+fun PlanetDetailScreen(
+    planetId: Int,
+    viewModel: DetailViewModel= hiltViewModel(),
+    onBack: () -> Unit
+) {
+    val state by viewModel.state.collectAsStateWithLifecycle()
+
+    LaunchedEffect(planetId) {
+        viewModel.loadPlanet(planetId)
+    }
+    PlanetDetailBodyScreen(
+        state=state,
+        onBack=onBack
+    )
+
+}
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun PlanetDetailBodyScreen(
     state: DetailState,
     onBack: () -> Unit
 ) {
@@ -55,9 +80,21 @@ fun DetailScreen(
             }
         }
     }
-}
 
+}
+@Preview(showBackground = true)
 @Composable
-fun AsyncImage() {
-    TODO("Not yet implemented")
+fun PlanetDetailScreenPreview() {
+    val samplePlanet = Planets(
+        PlanetId = 2,
+        name = "Namek",
+        isDestroyed = false,
+        description = "Namek es el planeta natal de los Namekianos, incluyendo a Piccolo y Dende. Tiene tres soles y un cielo de color verde.",
+        image = "https://dragonball-api.com/planets/Namek.webp"
+    )
+
+    PlanetDetailBodyScreen(
+        state = DetailState(planet = samplePlanet),
+        onBack = {}
+    )
 }

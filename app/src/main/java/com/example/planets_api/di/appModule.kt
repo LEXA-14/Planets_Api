@@ -2,6 +2,7 @@ package com.example.planets_api.di
 
 import dagger.Module
 import com.example.planets_api.data.remote.PlanetsApi
+import com.example.planets_api.data.remote.remoteDataSource.CharacterRemoteDataSource
 import com.example.planets_api.data.remote.remoteDataSource.PlanetDataSource
 import com.example.planets_api.data.repository.CharacterRepositoryImp
 import com.example.planets_api.data.repository.PlanetRepositoryImpl
@@ -53,7 +54,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideRepositoryCharacter(dataSource: PlanetDataSource): CharacterRepository{
+    fun provideRepositoryCharacter(dataSource: CharacterRemoteDataSource): CharacterRepository{
         return CharacterRepositoryImp(dataSource)
     }
 }

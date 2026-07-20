@@ -2,7 +2,7 @@ package com.example.planets_api.presentacion.Planets.listPlanet
 
 import com.example.planets_api.domain.planets.model.Planets
 
-data class listUiState
+data class PlanetListUiState
     (
     val isLoading: Boolean=false,
     val planets:List<Planets> = emptyList(),

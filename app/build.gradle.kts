@@ -10,7 +10,7 @@ plugins {
 
 android {
     namespace = "com.example.planets_api"
-    compileSdk=37
+    compileSdk = 37
 
     defaultConfig {
         applicationId = "com.example.planets_api"
@@ -43,6 +43,7 @@ android {
     }
 }
 
+
 dependencies {
 
     implementation(libs.androidx.activity.compose)
@@ -62,7 +63,9 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.lifecycle.viewmodel.ktx)
     implementation(libs.transport.runtime)
+    implementation(libs.ui.tooling.preview)
     debugImplementation(libs.androidx.ui.tooling)
+    debugImplementation(libs.ui.tooling)
     ksp(libs.androidx.room.compiler)
     implementation(libs.hilt.android)
     ksp(libs.hilt.android.compiler)
@@ -106,10 +109,12 @@ dependencies {
 // Retrofit
     implementation(libs.retrofit)
     implementation(libs.retrofit2.kotlinx.serialization.converter)
-    implementation(libs.kotlinx.serialization.json)
     implementation(libs.squareup.moshi.kotlin)
     implementation(libs.converter.moshi)
 //photo
     implementation(libs.coil.compose)
+    implementation(libs.androidx.navigation3.runtime)
+    implementation(libs.androidx.navigation3.ui)
+    implementation(libs.kotlinx.serialization.json)
 
 }

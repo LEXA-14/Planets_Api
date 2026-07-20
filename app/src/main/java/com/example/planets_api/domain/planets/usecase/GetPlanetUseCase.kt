@@ -6,7 +6,7 @@ import javax.inject.Inject
 class GetPlanetUseCase @Inject constructor(
     private val repository: PlanetRepository
 ) {
-    suspend operator fun invoke(
+     suspend operator fun invoke(
         page: Int=1,
         limit:Int=10,
         name:String?=null,

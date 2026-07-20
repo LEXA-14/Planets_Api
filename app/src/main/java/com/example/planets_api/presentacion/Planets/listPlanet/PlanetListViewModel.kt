@@ -13,11 +13,11 @@ import javax.inject.Inject
 
 
 @HiltViewModel
-class ListViewModel @Inject constructor(
+class PlanetListViewModel @Inject constructor(
     private val getPlanetUseCase: GetPlanetUseCase
 ) : ViewModel() {
 
-    private val _state = MutableStateFlow(listUiState())
+    private val _state = MutableStateFlow(PlanetListUiState())
     val state = _state.asStateFlow()
 
     init {

@@ -17,18 +17,15 @@ import javax.inject.Inject
 @HiltViewModel
 class CharacterDetailViewModel @Inject constructor(
     private val getCharacterDetailUseCase: GetCharacterDetailUseCase,
-    savedStateHandle: SavedStateHandle
+
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(CharacterDetailState())
     val state = _state.asStateFlow()
 
-    init {
-        val args = savedStateHandle.toRoute<Screen.DetailCharacter>()
-        loadCharacter(args.id)
-    }
 
-    private fun loadCharacter(id: Int) {
+
+    fun loadCharacter(id: Int) {
         viewModelScope.launch {
             getCharacterDetailUseCase(id).collect{  result->
                 when (result ) {
